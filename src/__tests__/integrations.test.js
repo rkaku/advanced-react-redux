@@ -1,35 +1,33 @@
-import React from 'react';
-import { mount } from 'enzyme';
-import moxios from 'moxios';
-import Root from 'Root';
-import App from 'components/App';
+import React from "react";
+import { mount } from "enzyme";
+import moxios from "moxios";
+import Root from "Root";
+import App from "components/App";
 
-
-beforeEach( () => {
+beforeEach(() => {
   moxios.install();
-  moxios.stubRequest( 'https://jsonplaceholder.typicode.com/comments', {
+  moxios.stubRequest("https://jsonplaceholder.typicode.com/comments", {
     status: 200,
-    response: [ { name: 'Fetched #1' }, { name: 'Fetched #2' } ]
-  } );
-} );
+    response: [{ name: "Fetched #1" }, { name: "Fetched #2" }],
+  });
+});
 
-afterEach( () => {
+afterEach(() => {
   moxios.uninstall();
-} );
+});
 
-it( 'can fetch a list of comments and display them', ( done ) => {
-
+it("can fetch a list of comments and display them", done => {
   const wrapper = mount(
     <Root>
       <App />
-    </Root>
+    </Root>,
   );
-  wrapper.find( '.fetch-comments' ).simulate( 'click' );
+  wrapper.find(".fetch-comments").simulate("click");
 
-  moxios.wait( () => {
+  moxios.wait(() => {
     wrapper.update();
-    expect( wrapper.find( 'li' ).length ).toEqual( 2 );
+    expect(wrapper.find("li").length).toEqual(2);
     done();
     wrapper.unmount();
-  }, 100 );
-} );
+  }, 100);
+});

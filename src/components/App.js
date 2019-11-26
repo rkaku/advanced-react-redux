@@ -1,8 +1,8 @@
-import React from 'react';
-import CommentBox from 'components/CommentBox';
-import CommentList from 'components/CommentList'
+import React from "react";
+import CommentBox from "components/CommentBox";
+import CommentList from "components/CommentList";
 
-function App () {
+function App() {
   return (
     <div>
       <CommentBox />
